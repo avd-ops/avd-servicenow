@@ -1,6 +1,6 @@
 # avd-servicenow
 
-Optional ServiceNow ITSM, CMDB/CSDM, and Change-Gate tier for [avd-ops](https://avd-ops.dev/), the open toolkit for Azure Virtual Desktop.
+Part of [avd-ops](https://avd-ops.dev/), the open toolkit for Azure Virtual Desktop. Optional ServiceNow ITSM, CMDB/CSDM, and Change-Gate tier.
 
 > [!WARNING]
 > **Personal project. Research and learning only. Not for production. No warranty.**

@@ -2,7 +2,7 @@
 
 - **Status:** Draft v0.1.0 (Accepted, see [decision ASN-0001](decisions/ASN-0001-servicenow-tier.md)).
 - **Date:** 2026-11-09
-- **Repository:** `avd-servicenow` (private until launch; built to be opened under `avd-ops/avd-servicenow` when ready).
+- **Repository:** `avd-ops/avd-servicenow` (public optional ecosystem tier).
 - **Numbering:** Plain decision, lesson, and contract numbers (`decision 0023`, `C11`, `C21`, `C24`) refer to the public [avd-ops](https://avd-ops.dev/) family ([avd-assess](https://github.com/avd-ops/avd-assess), [avd-second-brain](https://github.com/avd-ops/avd-second-brain), [avd-swarm](https://github.com/avd-ops/avd-swarm)). This repository's own decisions are numbered `ASN-NNNN`.
 - **Scope:** An opt-in ServiceNow integration tier for the `avd-ops` family. Nothing in the core `avd-ops` repositories requires ServiceNow, and `avd-landing-zone`'s default deployment never changes.
 

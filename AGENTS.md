@@ -67,12 +67,6 @@ These hold in every AVD repo. The repo's own rules below and in [CLAUDE.md](CLAU
 
 This repo's checks and rules are in [CLAUDE.md](CLAUDE.md) and [docs/guardrails.md](docs/guardrails.md). Read them next.
 
-## Private repo (until launch)
-
-This repo is private for now and built to be opened later under `avd-ops/avd-servicenow`: never
-name it from a public repo, issue or PR until launch, and never name or depend on another private
-repo here.
-
 ## Checks to run
 
 ```bash
