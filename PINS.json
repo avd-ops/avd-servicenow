@@ -1,0 +1,26 @@
+{
+  "schema": "avd-pins/v1",
+  "updated": "2026-11-09",
+  "upstreams": {
+    "avd-assess": {
+      "repo": "avd-ops/avd-assess",
+      "commit": "66ce8ef7a3df35497b7213705af8ef19df844429",
+      "contracts": ["C11", "C15", "C21", "C24"]
+    },
+    "avd-current-state": {
+      "repo": "avd-ops/avd-current-state",
+      "commit": "e7f6cc69c18c80d22f500e010b7e75f79a4b6f42",
+      "contracts": ["C11", "C21", "C24"]
+    },
+    "avd-second-brain": {
+      "repo": "avd-ops/avd-second-brain",
+      "commit": "7e95c81dbdecba75c251622e2ad60638cf742a5b",
+      "contracts": ["C6", "C7", "C8", "C15"]
+    },
+    "avd-swarm": {
+      "repo": "avd-ops/avd-swarm",
+      "commit": "8b5827ca26930af2341ece7ffea741889e9eefb6",
+      "contracts": ["C8", "C10"]
+    }
+  }
+}

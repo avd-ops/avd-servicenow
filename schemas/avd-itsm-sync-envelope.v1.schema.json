@@ -1,0 +1,204 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://avd-ops.dev/schemas/avd-itsm-sync-envelope.v1.schema.json",
+  "title": "AVD ITSM Sync Envelope (C26 Candidate)",
+  "description": "Deterministic, offline-testable ServiceNow CMDB IRE, Problem, Change Request, and Known Error sync envelope produced from C11, C21, and C24 contracts.",
+  "type": "object",
+  "required": [
+    "schema",
+    "generatedAt",
+    "estateSlug",
+    "redactionLevel",
+    "sourceContracts",
+    "cmdbIreBatch",
+    "problems",
+    "changeRequests",
+    "knownErrorDrafts"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "avd-itsm-sync-envelope/v1"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "estateSlug": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "redactionLevel": {
+      "type": "string",
+      "enum": ["pseudonymized", "estate-identifiers-opt-in"]
+    },
+    "sourceContracts": {
+      "type": "object",
+      "required": ["c11Sha256"],
+      "additionalProperties": false,
+      "properties": {
+        "c11Sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "c21Sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "c24Sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "cmdbIreBatch": {
+      "type": "object",
+      "required": ["items", "relations"],
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["className", "values"],
+            "additionalProperties": false,
+            "properties": {
+              "className": {
+                "type": "string",
+                "enum": [
+                  "cmdb_ci_service_technical",
+                  "cmdb_ci_cloud_service_account",
+                  "cmdb_ci_cloud_host_pool",
+                  "u_cmdb_ci_avd_host_pool",
+                  "cmdb_ci_vm_instance",
+                  "cmdb_ci_appl",
+                  "cmdb_ci_cloud_storage_account"
+                ]
+              },
+              "values": {
+                "type": "object",
+                "required": ["object_id", "name"]
+              }
+            }
+          }
+        },
+        "relations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["type", "parent", "child"],
+            "additionalProperties": false,
+            "properties": {
+              "type": { "type": "string" },
+              "parent": { "type": "integer", "minimum": 0 },
+              "child": { "type": "integer", "minimum": 0 }
+            }
+          }
+        }
+      }
+    },
+    "problems": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "correlationId",
+          "action",
+          "severity",
+          "checkId",
+          "shortDescription",
+          "affectedCiId",
+          "citations"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "correlationId": {
+            "type": "string",
+            "pattern": "^avd-ops:c21:[a-z0-9-]+:[A-Z0-9-]+$"
+          },
+          "action": {
+            "type": "string",
+            "enum": ["upsert", "resolve", "noop"]
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["critical", "high", "medium", "low"]
+          },
+          "checkId": {
+            "type": "string",
+            "pattern": "^[A-Z0-9-]+$"
+          },
+          "shortDescription": {
+            "type": "string",
+            "minLength": 10
+          },
+          "affectedCiId": {
+            "type": "string"
+          },
+          "citations": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "changeRequests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "correlationId",
+          "type",
+          "waveId",
+          "controlPlane",
+          "shortDescription",
+          "implementationPlan",
+          "backoutPlan",
+          "testPlan"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "correlationId": {
+            "type": "string",
+            "pattern": "^avd-(ops:c24|swarm:plan):[a-z0-9-]+:[a-zA-Z0-9-]+$"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["standard", "normal"]
+          },
+          "waveId": { "type": "string" },
+          "controlPlane": {
+            "type": "string",
+            "enum": ["azure", "entra", "intune", "m365", "power-platform", "swarm"]
+          },
+          "shortDescription": { "type": "string" },
+          "implementationPlan": { "type": "string" },
+          "backoutPlan": { "type": "string" },
+          "testPlan": { "type": "string" }
+        }
+      }
+    },
+    "knownErrorDrafts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["correlationId", "title", "symptom", "cause", "resolution", "checkIds"],
+        "additionalProperties": false,
+        "properties": {
+          "correlationId": {
+            "type": "string",
+            "pattern": "^avd-ops:ke:[a-z0-9-]+$"
+          },
+          "title": { "type": "string" },
+          "symptom": { "type": "string" },
+          "cause": { "type": "string" },
+          "resolution": { "type": "string" },
+          "checkIds": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}
