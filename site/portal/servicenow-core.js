@@ -492,6 +492,25 @@
     ].join('\n');
   }
 
+  function buildCatalogFulfillmentPayload(request) {
+    var req = request || {};
+    var ritm = String(req.ritmNumber || 'RITM0010001').toUpperCase();
+    var workflow = String(req.powerPlatformWorkflow || 'RequestPoolAccess');
+    var killSwitch = String(req.killSwitchState || 'run');
+    var allowed = killSwitch === 'run';
+
+    return {
+      idempotencyKey: 'avd-ops:sc:' + ritm + ':' + workflow,
+      ritmNumber: ritm,
+      powerPlatformWorkflow: workflow,
+      killSwitchState: killSwitch,
+      dispatchAllowed: allowed,
+      refusalReason: allowed ? null : 'Refused: kill switch is at ' + killSwitch,
+      targetCi: redactText(req.targetCi || '<pool-1>'),
+      redactedJustification: redactText(req.justification || '')
+    };
+  }
+
   return {
     PINNED_COMMIT: PINNED_COMMIT,
     ALLOWED_CI_CLASSES: ALLOWED_CI_CLASSES,
@@ -504,6 +523,7 @@
     buildKnownErrorDraft: buildKnownErrorDraft,
     buildSyncEnvelope: buildSyncEnvelope,
     validateSyncEnvelope: validateSyncEnvelope,
-    buildCommandBlock: buildCommandBlock
+    buildCommandBlock: buildCommandBlock,
+    buildCatalogFulfillmentPayload: buildCatalogFulfillmentPayload
   };
 });
