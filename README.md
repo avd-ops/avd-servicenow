@@ -14,7 +14,7 @@ Part of [avd-ops](https://avd-ops.dev/), the open toolkit for Azure Virtual Desk
 
 Under [avd-second-brain decision 0023](https://github.com/avd-ops/avd-second-brain/blob/main/docs/knowledge/decisions/0023-family-format-best-open-source-or-build.md), the core `avd-ops` family runs 100% open-source with zero paid third-party service required. `avd-servicenow` provides the opt-in ServiceNow integration tier for enterprise estates where ServiceNow is the system of record for CMDB, Incident/Problem Management, Change Governance, and Service Catalog.
 
-See [docs/spec.md](docs/spec.md) and [docs/guardrails.md](docs/guardrails.md) for the full design.
+See [docs/spec.md](docs/spec.md), [docs/guardrails.md](docs/guardrails.md), [docs/redteam.md](docs/redteam.md), and [docs/lessons/](docs/lessons/README.md) for the full design, red-team review, and lessons learned.
 
 ## Modules
 
