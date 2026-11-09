@@ -1,0 +1,62 @@
+{
+  "schema": "avd-current-state-facts/v1",
+  "estateSlug": "contoso-prod",
+  "collectedAt": "2026-11-09T12:00:00Z",
+  "hostPools": [
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-avd-prod-ncus/providers/Microsoft.DesktopVirtualization/hostPools/vdpool-prod-ncus-001",
+      "name": "vdpool-prod-ncus-001",
+      "location": "northcentralus",
+      "hostPoolType": "Pooled",
+      "loadBalancerType": "BreadthFirst",
+      "maxSessionLimit": 16,
+      "validationEnvironment": false
+    }
+  ],
+  "sessionHosts": [
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-avd-prod-ncus/providers/Microsoft.Compute/virtualMachines/vm-avd-p-0",
+      "name": "vm-avd-p-0.contoso.com",
+      "hostPoolName": "vdpool-prod-ncus-001",
+      "osVersion": "Windows 11 Enterprise multi-session 24H2",
+      "vmSize": "Standard_E4s_v5",
+      "agentVersion": "1.0.9250.1100",
+      "status": "Available",
+      "allowNewSession": true
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-avd-prod-ncus/providers/Microsoft.Compute/virtualMachines/vm-avd-p-1",
+      "name": "vm-avd-p-1.contoso.com",
+      "hostPoolName": "vdpool-prod-ncus-001",
+      "osVersion": "Windows 11 Enterprise multi-session 24H2",
+      "vmSize": "Standard_E4s_v5",
+      "agentVersion": "1.0.9250.1100",
+      "status": "Unavailable",
+      "allowNewSession": false
+    }
+  ],
+  "applicationGroups": [
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-avd-prod-ncus/providers/Microsoft.DesktopVirtualization/applicationGroups/vdag-prod-desktop",
+      "name": "vdag-prod-desktop",
+      "applicationGroupType": "Desktop",
+      "hostPoolName": "vdpool-prod-ncus-001"
+    }
+  ],
+  "workspaces": [
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-avd-prod-ncus/providers/Microsoft.DesktopVirtualization/workspaces/vdws-prod-ncus",
+      "name": "vdws-prod-ncus",
+      "applicationGroupNames": ["vdag-prod-desktop"]
+    }
+  ],
+  "storageAccounts": [
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-avd-prod-ncus/providers/Microsoft.Storage/storageAccounts/stavdprofprod001",
+      "name": "stavdprofprod001",
+      "sku": "Premium_ZRS",
+      "identityType": "EntraKerberos",
+      "hostPoolName": "vdpool-prod-ncus-001"
+    }
+  ]
+}
