@@ -475,18 +475,19 @@
     var opts = options || {};
     var shell = opts.shell === 'bash' ? 'bash' : 'pwsh';
     var slug = String(opts.estateSlug || 'contoso-prod').replace(/[^a-z0-9-]/gi, '');
-    var mode = opts.mode === 'WhatIf' ? 'WhatIf' : 'OfflineFixture';
+    var allowedModes = ['OfflineFixture', 'WhatIf', 'MockPdi', 'LivePdi'];
+    var mode = allowedModes.indexOf(opts.mode) !== -1 ? opts.mode : 'OfflineFixture';
 
     if (shell === 'bash') {
       return [
-        'if [ ! -d "$HOME/avd-servicenow/.git" ]; then git clone https://github.com/nickprignano/avd-servicenow.git "$HOME/avd-servicenow"; fi',
+        'if [ ! -d "$HOME/avd-servicenow/.git" ]; then git clone https://github.com/avd-ops/avd-servicenow.git "$HOME/avd-servicenow"; fi',
         'cd "$HOME/avd-servicenow" && git checkout -q ' + PINNED_COMMIT + ' && git pull -q --ff-only',
         'pwsh -NoProfile -Command "./Invoke-AvdServiceNowSync.ps1 -EstateSlug ' + slug + ' -Mode ' + mode + '"'
       ].join('\n');
     }
 
     return [
-      'if (-not (Test-Path "$HOME/avd-servicenow/.git")) { git clone https://github.com/nickprignano/avd-servicenow.git "$HOME/avd-servicenow" }',
+      'if (-not (Test-Path "$HOME/avd-servicenow/.git")) { git clone https://github.com/avd-ops/avd-servicenow.git "$HOME/avd-servicenow" }',
       'Set-Location ~/avd-servicenow; git checkout -q ' + PINNED_COMMIT + '; git pull -q --ff-only',
       './Invoke-AvdServiceNowSync.ps1 -EstateSlug ' + slug + ' -Mode ' + mode
     ].join('\n');
