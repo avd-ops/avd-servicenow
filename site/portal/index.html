@@ -109,7 +109,7 @@
     <div class="codeblock gap">
       <div class="codebar"><span>Cloud Shell / Local command</span><button type="button" class="btn small" id="copy-cmd">Copy</button></div>
       <pre id="run-cmd-pre">if (-not (Test-Path "$HOME/avd-servicenow/.git")) { git clone https://github.com/avd-ops/avd-servicenow.git "$HOME/avd-servicenow" }
-Set-Location ~/avd-servicenow; git checkout -q fe16948; git pull -q --ff-only
+Set-Location ~/avd-servicenow; git checkout -q 1e67787; git pull -q --ff-only
 ./Invoke-AvdServiceNowSync.ps1 -EstateSlug contoso-prod -Mode OfflineFixture</pre>
     </div>
     <div class="gap">

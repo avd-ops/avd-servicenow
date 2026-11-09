@@ -11,7 +11,7 @@
   'use strict';
 
   var ZERO_UUID = '00000000-0000-0000-0000-000000000000';
-  var PINNED_COMMIT = 'fe16948';
+  var PINNED_COMMIT = '1e67787';
 
   var ALLOWED_CI_CLASSES = [
     'cmdb_ci_service_technical',
