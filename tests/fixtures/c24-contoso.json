@@ -1,0 +1,27 @@
+{
+  "schema": "avd-remediation-plan/v1",
+  "estateSlug": "contoso-prod",
+  "generatedAt": "2026-11-09T12:10:00Z",
+  "waves": [
+    {
+      "waveId": "wave-1-network-shortpath",
+      "controlPlane": "azure",
+      "changeType": "standard",
+      "shortDescription": "Enable RDP Shortpath UDP 3390 and STUN egress on AVD spoke NSG",
+      "closesChecks": ["AZ-NET-004"],
+      "implementationPlan": "Deploy avd-azure network module with enableRdpShortpath=true via Bicep PR.",
+      "backoutPlan": "Revert NSG rule priority 210 to previous commit and re-run deployment.",
+      "testPlan": "Run avd-current-state check AZ-NET-004 and verify status == pass."
+    },
+    {
+      "waveId": "wave-2-storage-privatelink",
+      "controlPlane": "azure",
+      "changeType": "normal",
+      "shortDescription": "Link privatelink.file.core.windows.net Private DNS zone to AVD spoke VNet",
+      "closesChecks": ["AZ-STO-002"],
+      "implementationPlan": "Deploy virtualNetworkLinks child resource on privateDnsZones/privatelink.file.core.windows.net.",
+      "backoutPlan": "Remove VNet link only if custom DNS forwarder fallback is verified.",
+      "testPlan": "Run avd-current-state check AZ-STO-002 and verify FSLogix VHDX mount latency p95 < 25ms."
+    }
+  ]
+}

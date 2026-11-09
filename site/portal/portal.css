@@ -1,0 +1,25 @@
+/* Personal project, not for production, as is; not affiliated with the author's employer, ServiceNow, Liquidware or Microsoft. MIT. */
+.shell main{padding-block:0}
+.portal header.bar .iconbtn,.portal header.bar .iconbtn:hover:not(:disabled){padding:0;background:transparent;color:var(--shell-fg);border-color:var(--shell-line)}
+.portal header.bar .iconbtn:hover:not(:disabled){background:var(--shell-hover)}
+.wz-main{min-width:0}
+.portal button.wz-tool,.portal button.wz-tool:hover:not(:disabled){border:0;background:none;color:var(--muted)}
+.portal button.wz-tool:hover:not(:disabled),.portal button.wz-tool[aria-expanded="true"]{background:var(--sunken);color:var(--fg)}
+html{scroll-padding-top:calc(var(--bar) + env(safe-area-inset-top,0px) + 16px);scroll-padding-bottom:96px}
+.wz-stage .row+.row,.wz-stage .switch+.row{margin-top:var(--space-3)}
+.after{max-width:var(--page);margin:0 auto;padding-top:24px;padding-left:max(var(--gutter),env(safe-area-inset-left,0px));padding-right:max(var(--gutter),env(safe-area-inset-right,0px))}
+@media (min-width:64.01rem){.after{padding-left:calc(max(var(--gutter),env(safe-area-inset-left,0px)) + 14rem + var(--space-6))}}
+.credit{margin:0;padding:0 0 calc(24px + env(safe-area-inset-bottom,0px));font:600 .8rem var(--mono);letter-spacing:.04em;color:var(--fg)}
+.credit a{color:inherit}
+.portal footer.disclaimer{padding-bottom:10px}
+.gap{margin-top:var(--space-3)}
+.actions{display:flex;flex-wrap:wrap;gap:var(--space-3);align-items:center;margin-top:var(--space-4)}
+.prior-banner{padding:var(--space-3) var(--space-4);border-left:3px solid var(--info);background:var(--info-soft);color:var(--fg);border-radius:0 var(--radius-sm) var(--radius-sm) 0;margin-bottom:var(--space-4)}
+.spend-banner{padding:var(--space-3) var(--space-4);border-left:3px solid var(--caution);background:var(--caution-soft);color:var(--fg);border-radius:0 var(--radius-sm) var(--radius-sm) 0;margin-top:var(--space-3)}
+.compare-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:var(--space-4);margin-top:var(--space-4)}
+.compare-card{padding:var(--space-4);border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface);box-shadow:var(--shadow)}
+.compare-card h3{margin:0 0 var(--space-2);font:700 1.05rem var(--display)}
+.compare-meta{font-size:.84rem;color:var(--muted);margin-bottom:var(--space-3)}
+.cite-box{margin-top:var(--space-3);padding:var(--space-2) var(--space-3);background:var(--sunken);border:1px solid var(--line);border-radius:var(--radius-sm);font:12px/1.4 var(--mono);word-break:break-all}
+.errors{margin:var(--space-3) 0 0;padding:var(--space-3) var(--space-4);border:1px solid var(--bad);border-radius:var(--radius-sm);background:var(--bad-soft);color:var(--fg)}
+[hidden]{display:none!important}

@@ -92,7 +92,7 @@ test('Repository contains no leaked GUIDs, real ServiceNow instances, or private
 
   for (const file of walk(ROOT)) {
     const rel = path.relative(ROOT, file);
-    if (rel === 'tests/bootstrap.test.mjs') continue;
+    if (rel === 'tests/bootstrap.test.mjs' || rel.endsWith('.woff2')) continue;
     const text = fs.readFileSync(file, 'utf8');
 
     const uuids = text.match(uuidRegex) || [];
