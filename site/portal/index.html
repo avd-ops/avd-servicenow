@@ -18,7 +18,7 @@
 <header class="bar"><div class="bar-in"><a class="brand" href="https://avd-ops.dev/"><img class="mark" src="../assets/brand/mark.svg" alt="" width="44" height="44"><span class="name"><span class="word">avd-ops</span><span class="tag">Deploy quietly</span></span></a>
 <nav class="switcher" aria-label="avd-ops tools"><a href="https://avd-ops.dev/">Docs</a><a href="https://deploy.avd-ops.dev/portal/">Deploy</a><a href="https://assess.avd-ops.dev/portal/">Assess</a><a href="./" aria-current="page">ServiceNow</a></nav>
 <details class="notice" id="disclaimer"><summary><strong class="long">Personal project. Research and learning only. Not for production. No warranty.</strong><strong class="short">Not for production</strong></summary>
-<div class="full"><ul><li><strong>Personal project, not for production.</strong> Provided "as is", without warranty of any kind (<a href="https://github.com/nickprignano/avd-servicenow/blob/main/LICENSE">MIT License</a>).</li>
+<div class="full"><ul><li><strong>Personal project, not for production.</strong> Provided "as is", without warranty of any kind (<a href="https://github.com/avd-ops/avd-servicenow/blob/main/LICENSE">MIT License</a>).</li>
 <li>Built on my own time for research and learning. Not affiliated with, endorsed by or supported by my employer, ServiceNow, Liquidware or Microsoft.</li>
 <li>Don't run any of it in production. Test in a dedicated lab subscription and a free ServiceNow Personal Developer Instance (PDI). Contributions and forks are welcome and encouraged.</li></ul></div></details>
 <div class="tools"><button class="iconbtn theme" type="button" aria-label="Switch theme"><svg class="sun" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="10" cy="10" r="3.5"/><path d="M10 1.8v2.2M10 16v2.2M1.8 10H4M16 10h2.2M4.2 4.2l1.6 1.6M14.2 14.2l1.6 1.6M4.2 15.8l1.6-1.6M14.2 5.8l1.6-1.6"/></svg><svg class="moon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M16.5 12.4A7 7 0 0 1 7.6 3.5a7 7 0 1 0 8.9 8.9Z"/></svg></button></div></div></header>
@@ -108,7 +108,7 @@
     </div>
     <div class="codeblock gap">
       <div class="codebar"><span>Cloud Shell / Local command</span><button type="button" class="btn small" id="copy-cmd">Copy</button></div>
-      <pre id="run-cmd-pre">if (-not (Test-Path "$HOME/avd-servicenow/.git")) { git clone https://github.com/nickprignano/avd-servicenow.git "$HOME/avd-servicenow" }
+      <pre id="run-cmd-pre">if (-not (Test-Path "$HOME/avd-servicenow/.git")) { git clone https://github.com/avd-ops/avd-servicenow.git "$HOME/avd-servicenow" }
 Set-Location ~/avd-servicenow; git checkout -q fe16948; git pull -q --ff-only
 ./Invoke-AvdServiceNowSync.ps1 -EstateSlug contoso-prod -Mode OfflineFixture</pre>
     </div>
@@ -128,7 +128,7 @@ Set-Location ~/avd-servicenow; git checkout -q fe16948; git pull -q --ff-only
 </main>
 
 <div class="after">
-  <footer class="disclaimer">Personal project, not for production, provided "as is" under the <a href="https://github.com/nickprignano/avd-servicenow/blob/main/LICENSE">MIT License</a>. Not affiliated with, endorsed by or supported by the author's employer, ServiceNow, Liquidware or Microsoft.</footer>
+  <footer class="disclaimer">Personal project, not for production, provided "as is" under the <a href="https://github.com/avd-ops/avd-servicenow/blob/main/LICENSE">MIT License</a>. Not affiliated with, endorsed by or supported by the author's employer, ServiceNow, Liquidware or Microsoft.</footer>
   <p class="credit">A <a href="https://prignano.ai/">prignano.ai</a> production</p>
 </div>
 <script src="servicenow-core.js"></script>

@@ -480,14 +480,14 @@
 
     if (shell === 'bash') {
       return [
-        'if [ ! -d "$HOME/avd-servicenow/.git" ]; then git clone https://github.com/nickprignano/avd-servicenow.git "$HOME/avd-servicenow"; fi',
+        'if [ ! -d "$HOME/avd-servicenow/.git" ]; then git clone https://github.com/avd-ops/avd-servicenow.git "$HOME/avd-servicenow"; fi',
         'cd "$HOME/avd-servicenow" && git checkout -q ' + PINNED_COMMIT + ' && git pull -q --ff-only',
         'pwsh -NoProfile -Command "./Invoke-AvdServiceNowSync.ps1 -EstateSlug ' + slug + ' -Mode ' + mode + '"'
       ].join('\n');
     }
 
     return [
-      'if (-not (Test-Path "$HOME/avd-servicenow/.git")) { git clone https://github.com/nickprignano/avd-servicenow.git "$HOME/avd-servicenow" }',
+      'if (-not (Test-Path "$HOME/avd-servicenow/.git")) { git clone https://github.com/avd-ops/avd-servicenow.git "$HOME/avd-servicenow" }',
       'Set-Location ~/avd-servicenow; git checkout -q ' + PINNED_COMMIT + '; git pull -q --ff-only',
       './Invoke-AvdServiceNowSync.ps1 -EstateSlug ' + slug + ' -Mode ' + mode
     ].join('\n');

@@ -72,7 +72,7 @@ test('vendored design system in site/assets/ matches MANIFEST.json hashes and po
 test('every command block in HTML and servicenow-core.js stands alone in Cloud Shell (lesson 0015)', () => {
   const html = read('site/portal/index.html');
   for (const [, block] of html.matchAll(/<pre[^>]*>([\s\S]*?)<\/pre>/g)) {
-    assert.match(block, /git clone https:\/\/github\.com\/nickprignano\/avd-servicenow\.git/);
+    assert.match(block, /git clone https:\/\/github\.com\/avd-ops\/avd-servicenow\.git/);
     assert.match(block, /Set-Location ~\/avd-servicenow; git checkout -q \w+; git pull -q --ff-only/);
   }
 
