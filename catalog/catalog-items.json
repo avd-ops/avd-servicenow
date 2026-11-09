@@ -1,0 +1,82 @@
+{
+  "schema": "avd-servicenow-catalog/v1",
+  "version": "1.0.0",
+  "targetControlPlane": "avd-power-platform",
+  "items": [
+    {
+      "id": "sc-avd-request-pool-access",
+      "name": "Request Azure Virtual Desktop Pool / App Group Access",
+      "category": "Azure Virtual Desktop",
+      "shortDescription": "Request time-bound or standard user assignment to an AVD Application Group via Entra ID security group membership.",
+      "approvalModel": "manager-or-app-owner",
+      "powerPlatformWorkflow": "RequestPoolAccess",
+      "targetControlPlanes": ["avd-power-platform", "avd-entra"],
+      "variables": [
+        { "name": "workspace_ci", "type": "reference", "referenceTable": "cmdb_ci_appl", "mandatory": true },
+        { "name": "application_group_ci", "type": "reference", "referenceTable": "cmdb_ci_appl", "mandatory": true },
+        { "name": "access_duration_days", "type": "integer", "default": 30, "min": 1, "max": 90, "mandatory": true },
+        { "name": "business_justification", "type": "string", "mandatory": true }
+      ],
+      "guardrails": {
+        "requiresKillSwitchRun": true,
+        "idempotencyKeyPattern": "^avd-ops:sc:RITM[0-9]{7}:RequestPoolAccess$",
+        "redactJustificationBeforeLog": true
+      }
+    },
+    {
+      "id": "sc-avd-session-host-drain-restart",
+      "name": "Operator: Drain and Restart AVD Session Host",
+      "category": "Azure Virtual Desktop",
+      "shortDescription": "Enable drain mode on an unhealthy or maintenance-targeted session host, notify active sessions, and restart once drained.",
+      "approvalModel": "peer-operator-or-standard-change",
+      "powerPlatformWorkflow": "SessionHostDrainAndRestart",
+      "targetControlPlanes": ["avd-power-platform", "avd-azure"],
+      "variables": [
+        { "name": "session_host_ci", "type": "reference", "referenceTable": "cmdb_ci_vm_instance", "mandatory": true },
+        { "name": "host_pool_ci", "type": "reference", "referenceTable": "cmdb_ci_cloud_host_pool", "mandatory": true },
+        { "name": "drain_timeout_minutes", "type": "integer", "default": 30, "min": 5, "max": 120, "mandatory": true },
+        { "name": "maintenance_reason", "type": "string", "mandatory": true }
+      ],
+      "guardrails": {
+        "requiresKillSwitchRun": true,
+        "requiresServiceHealthClear": true,
+        "idempotencyKeyPattern": "^avd-ops:sc:RITM[0-9]{7}:SessionHostDrainAndRestart$",
+        "redactJustificationBeforeLog": true
+      }
+    },
+    {
+      "id": "sc-avd-personal-desktop-start",
+      "name": "Start Assigned Personal AVD Session Host",
+      "category": "Azure Virtual Desktop",
+      "shortDescription": "Start a deallocated personal desktop session host assigned to the requesting caller.",
+      "approvalModel": "auto-approved-assigned-owner",
+      "powerPlatformWorkflow": "PersonalDesktopStartOnDemand",
+      "targetControlPlanes": ["avd-power-platform", "avd-azure"],
+      "variables": [
+        { "name": "session_host_ci", "type": "reference", "referenceTable": "cmdb_ci_vm_instance", "mandatory": true }
+      ],
+      "guardrails": {
+        "requiresKillSwitchRun": true,
+        "verifyCallerOwnsPersonalHost": true,
+        "idempotencyKeyPattern": "^avd-ops:sc:RITM[0-9]{7}:PersonalDesktopStartOnDemand$"
+      }
+    },
+    {
+      "id": "sc-avd-fslogix-session-reset",
+      "name": "Self-Service: Log Off Hung AVD Session & Release FSLogix Lock",
+      "category": "Azure Virtual Desktop",
+      "shortDescription": "Disconnect and log off the caller's hung session across pooled hosts to release a locked FSLogix VHDX profile container.",
+      "approvalModel": "auto-approved-session-owner",
+      "powerPlatformWorkflow": "FslogixHungSessionReset",
+      "targetControlPlanes": ["avd-power-platform", "avd-azure"],
+      "variables": [
+        { "name": "host_pool_ci", "type": "reference", "referenceTable": "cmdb_ci_cloud_host_pool", "mandatory": true }
+      ],
+      "guardrails": {
+        "requiresKillSwitchRun": true,
+        "verifyCallerSessionMatch": true,
+        "idempotencyKeyPattern": "^avd-ops:sc:RITM[0-9]{7}:FslogixHungSessionReset$"
+      }
+    }
+  ]
+}
