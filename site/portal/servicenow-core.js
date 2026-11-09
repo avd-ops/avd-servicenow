@@ -475,7 +475,8 @@
     var opts = options || {};
     var shell = opts.shell === 'bash' ? 'bash' : 'pwsh';
     var slug = String(opts.estateSlug || 'contoso-prod').replace(/[^a-z0-9-]/gi, '');
-    var mode = opts.mode === 'WhatIf' ? 'WhatIf' : 'OfflineFixture';
+    var allowedModes = ['OfflineFixture', 'WhatIf', 'MockPdi', 'LivePdi'];
+    var mode = allowedModes.indexOf(opts.mode) !== -1 ? opts.mode : 'OfflineFixture';
 
     if (shell === 'bash') {
       return [
