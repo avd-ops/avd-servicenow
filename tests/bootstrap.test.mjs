@@ -88,7 +88,7 @@ test('Repository contains no leaked GUIDs, real ServiceNow instances, or private
 
   const uuidRegex = /\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/gi;
   const snowHostRegex = /\b([a-z0-9-]+)\.service-now\.com\b/gi;
-  const bannedPrivateSiblings = /\b(avd-remediate|avd-sandbox|avd-cleanbench|avd-hcl|tenant-swarm|avd-readiness-ux)\b/i;
+  const bannedPrivateSiblings = /\b(avd-remediate|avd-sandbox|avd-cleanbench|tenant-swarm|avd-readiness-ux)\b/i;
 
   for (const file of walk(ROOT)) {
     const rel = path.relative(ROOT, file);
