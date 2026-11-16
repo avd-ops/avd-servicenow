@@ -5,10 +5,10 @@ Part of [avd-ops](https://avd-ops.dev/), the open toolkit for Azure Virtual Desk
 Optional ServiceNow ITSM, CMDB/CSDM, and Change-Gate tier for enterprise estates where ServiceNow is the system of record. Under [avd-second-brain decision 0023](https://github.com/avd-ops/avd-second-brain/blob/main/docs/knowledge/decisions/0023-family-format-best-open-source-or-build.md), the core `avd-ops` family runs 100% open-source with zero paid third-party service required; `avd-servicenow` is opt-in.
 
 > [!WARNING]
-> **Personal project. Research and learning only. Not for production. No warranty.**
+> **Community research project. Use at your own risk. No warranty.**
 >
 > - This is my own personal project, built on my own time **for research and learning**. It is **not affiliated with, endorsed by or supported by my employer, ServiceNow, Liquidware or Microsoft**, and it does not represent their views, products or guidance.
-> - **Do not run any of it in production** or against subscriptions, tenants, or ServiceNow instances that matter. Test it first in a dedicated lab subscription and a free ServiceNow Personal Developer Instance (PDI).
+> - Test it first in a dedicated lab subscription and tenant before using it in production; you are responsible for reviewing the code and validating it for your environment.
 > - It is provided **"as is", without warranty of any kind**, under the [MIT License](LICENSE). You use it at your own risk.
 > - **Contributions and forks are welcome and encouraged.** See [Contributing](#contributing).
 
@@ -51,4 +51,4 @@ Fork it, open an issue or a pull request. Follow [docs/guardrails.md](docs/guard
 
 ## License and disclaimer
 
-[MIT](LICENSE). Personal project, not for production, provided as is, not affiliated with the author's employer, ServiceNow, Liquidware or Microsoft. ServiceNow is a registered trademark of ServiceNow, Inc.
+[MIT](LICENSE). Community research project, provided as is, use at your own risk, not affiliated with the author's employer, ServiceNow, Liquidware or Microsoft. ServiceNow is a registered trademark of ServiceNow, Inc.
